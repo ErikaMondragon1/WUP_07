@@ -54,7 +54,7 @@ basicCC <- ggplot(dd2,aes(x=Sex,y=prcnt*100,fill=result))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
-The bar graph shows that more men by Covid than women. 
+The bar graph shows that more men by Covid than women in Korea. 
 
   
 ## Numerical results
@@ -65,12 +65,17 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-The table shows that more men die due to Covid than women. 
+The table shows that more men die due to Covid than women. Out of 100 people 64 men died compared to 36 women who died. While, out of one hundred, 56 women are alive, and 44 men alive. 
 
 ## Inferential results 
 
-
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+The p-value is 0.0012, which is less than 0.05 so we reject the null hypothesis. On the fisher test, the odds ratio shows that you are 2 times more likely to die of covid in Korea if you are male. 
 
 
 ## Conclusions
-
+The original question was, is dying independent of sex? We found out that the p-value is 0.0012, which is less than 0.05 so we reject the null hypothesis. Which is that there is no difference in dying based on gender. So we conclude that there is a difference in dying based on gender
