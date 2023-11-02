@@ -59,7 +59,13 @@ The bar graph shows that more men by Covid than women.
   
 ## Numerical results
 
+```{r}
+table1 <- xtabs(~result + Sex, data=kRdata)
+rowPerc(table1)
+colPerc(table1)
+```
 
+The table shows that more men die due to Covid than women. 
 
 ## Inferential results 
 
