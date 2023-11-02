@@ -1,7 +1,7 @@
 ---
 title: "Initial Korean covid 19"
-author: "your name here"
-date: "todays date"
+author: "Erika Mondragon"
+date: "Fall 2023"
 output:
   html_document: default
   pdf_document: default
@@ -19,31 +19,46 @@ mutate(across(where(is.character), as.factor))
 
 ```
 ### Data is from the Patient_Info dataset from South Korea 1 Jan to 1 May 2020
-### This data was retrieved from a downloadable zip file from kaggle
+### This data were retrieved from a downloadable zip file from kaggle
 
 Some of the data was uncoded for sex - sex must be just male or female
 77 of the data entries were coded sex  as blank, so we omit these.
 state of a patient must be died or alive - we adjust that as well   
   
+  
+  
 # Your Question - Is dying independent of sex?
+$H_0$: There is no difference in dying based on gender
+$H_A$: There is a difference in dying based on gender
 
 
+## Methods
 
-
+The response is categorical, the explanatory variable is categorical. Therefore, we would upload Cat~Cat helper file. 
 
 
 ## Graphical results - use ggplot commands to do this  
 
+```{r}
+dd2 <- kRdata %>% group_by(result,Sex) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
 
-  
+# the group_by followed by summarize(count=n())
 
+basicC <- ggplot(dd2,aes(x=Sex,y=count,fill=result))
+basicC + geom_bar(stat="identity",position="dodge")
 
+#Now for percentage plot
 
+basicCC <- ggplot(dd2,aes(x=Sex,y=prcnt*100,fill=result)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
 
+The bar graph shows that more men by Covid than women. 
 
   
 ## Numerical results
+
 
 
 ## Inferential results 
